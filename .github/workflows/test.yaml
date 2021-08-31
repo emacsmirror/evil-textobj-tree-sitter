@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master
+      - fix-make-test
 
 jobs:
   check:
@@ -25,6 +26,7 @@ jobs:
     - uses: conao3/setup-cask@master
       with:
         version: snapshot
+    - run: nix-env -f "<nixpkgs>" -iA libstdcxx5
     - run: cask install
     - run: make compile
     - run: make lint
